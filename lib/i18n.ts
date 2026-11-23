@@ -32,7 +32,7 @@ export function fmt(s: string, vars: Record<string, string | number>) {
   return s.replace(/\{(\w+)\}/g, (_, k: string) => (k in vars ? String(vars[k]) : `{${k}}`));
 }
 
-/** Price region a language implies: English → decided by the visitor's time zone, India → ₹, the rest → €. */
+/** Price region a language implies: English → decided by the visitor (menu choice, then country), India → ₹, the rest → €. */
 export const regionForLocale = (l: Locale): Region | null => (l === "en" ? null : l === "en-in" ? "in" : "eu");
 
 /** Cookie the middleware sets on "/" with the price region its country points to (session cookie, read before first paint). */
@@ -128,6 +128,16 @@ export const SUGGEST_COOKIE = "anth-suggest";
 /** Cookie holding the visitor's explicit language choice (set by the switcher / banner). */
 export const LANG_COOKIE = "anth-lang";
 export const LANG_COOKIE_MAX_AGE = 60 * 60 * 24 * 365; // one year
+
+/** Cookie set when English (Global) is picked in the language menu: its prices are then in dollars, wherever the visitor is. */
+export const CURRENCY_COOKIE = "anth-currency";
+
+/** Browser-side: a pick in the language menu. English pins dollars; any other language goes back to its own currency. */
+export function rememberMenuPick(l: Locale) {
+  rememberLang(l);
+  if (l === "en") setPrefCookie(CURRENCY_COOKIE, "us", LANG_COOKIE_MAX_AGE);
+  else deleteCookie(CURRENCY_COOKIE);
+}
 
 /** Browser-side: remember an explicit language choice (for a year with cookie consent, else this session). */
 export function rememberLang(l: Locale) {

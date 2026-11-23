@@ -3,6 +3,7 @@
  * optional ones are preferences:
  *   anth-suggest  language suggestion worked out by the middleware (30 days)
  *   anth-lang     the language a visitor picked   (1 year with consent, else this session)
+ *   anth-currency dollars, after picking English (Global) in the menu (same lifetime as anth-lang)
  * The answer itself lives in `anth-consent` (strictly necessary: it records the choice).
  * Shared by the middleware (server) and the page (client); no React here.
  */
@@ -49,9 +50,11 @@ export function saveConsent(c: Consent) {
   document.cookie = `${CONSENT_COOKIE}=${c}; Path=/; Max-Age=${CONSENT_MAX_AGE}; SameSite=Lax${secureFlag()}`;
   if (c === "necessary") {
     deleteCookie("anth-suggest");
-    // keep the visitor's choice for this session only: rewrite it without an expiry
-    const v = readCookie("anth-lang");
-    if (v) document.cookie = `anth-lang=${v}; Path=/; SameSite=Lax${secureFlag()}`;
+    // keep the visitor's choices for this session only: rewrite them without an expiry
+    for (const name of ["anth-lang", "anth-currency"]) {
+      const v = readCookie(name);
+      if (v) document.cookie = `${name}=${v}; Path=/; SameSite=Lax${secureFlag()}`;
+    }
   }
   window.dispatchEvent(new Event(CONSENT_EVENT));
 }

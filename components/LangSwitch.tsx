@@ -1,11 +1,19 @@
 "use client";
 
 import { useEffect, useState } from "react";
-import { LOCALES, homePath, htmlLang, langCode, rememberLang, type Locale } from "@/lib/i18n";
+import { LOCALES, homePath, htmlLang, langCode, rememberMenuPick, type Locale } from "@/lib/i18n";
 
 /** Move to a language, keeping utm_* / region / hash so the ad attribution survives the switch. */
 export function goTo(l: Locale) {
   window.location.assign(`${homePath(l)}${window.location.search}${window.location.hash}`);
+}
+
+/** Picking English (Global) means dollar prices, so an ad link's ?region= no longer applies (utm_* stay). */
+function dropRegionParam() {
+  const url = new URL(window.location.href);
+  if (!url.searchParams.has("region")) return;
+  url.searchParams.delete("region");
+  window.history.replaceState(window.history.state, "", url);
 }
 
 /**
@@ -92,10 +100,13 @@ export default function LangSwitch({
                   aria-current={l === lang ? "true" : undefined}
                   className={`lang-opt${l === lang ? " on" : ""}`}
                   onClick={(e) => {
-                    rememberLang(l); // explicit choice: remembered, and the middleware honours it on "/"
+                    rememberMenuPick(l); // explicit choice: remembered, and the middleware honours it on "/"
                     e.preventDefault();
-                    if (l === lang) setOpen(false);
-                    else goTo(l);
+                    if (l === "en") dropRegionParam();
+                    if (l !== lang) goTo(l);
+                    // already on English but priced for the country: reload, so prices and checkout links agree
+                    else if (l === "en" && document.documentElement.dataset.region !== "us") window.location.reload();
+                    else setOpen(false);
                   }}
                 >
                   <span className="lang-opt-code">{langCode(l)}</span>

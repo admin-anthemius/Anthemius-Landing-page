@@ -49,11 +49,12 @@ export function pageMetadata(lang: Locale): Metadata {
 
 /**
  * Runs before first paint, so the price never flashes. An ad link's ?region= wins; then the page
- * language (en-in → ₹, nl/fr/es/fi → €); then, on the English page, the visitor's country (the
+ * language (en-in → ₹, nl/fr/es/fi → €); then, on the English page, dollars if English
+ * was picked in the menu (anth-currency cookie), else the visitor's country (the
  * anth-region cookie the middleware sets from the geo header); last the browser time zone.
  */
 const regionScript = (def: string) =>
-  `(function(){var d=document.documentElement,ok=['us','eu','in'],r='',L='${def}';try{r=(new URLSearchParams(location.search).get('region')||'').toLowerCase();if(ok.indexOf(r)<0){var k=(document.cookie.match(/(?:^|; )anth-region=([a-z]+)/)||[])[1]||'';if(L){r=L}else if(ok.indexOf(k)>=0){r=k}else{var z=Intl.DateTimeFormat().resolvedOptions().timeZone||'';r=(z==='Asia/Kolkata'||z==='Asia/Calcutta')?'in':(/^Europe\\/(Vienna|Brussels|Berlin|Paris|Rome|Madrid|Amsterdam|Dublin|Lisbon|Helsinki|Athens|Luxembourg|Malta|Bratislava|Ljubljana|Tallinn|Riga|Vilnius|Zagreb|Sofia|Andorra|Monaco|San_Marino|Vatican|Busingen)$/.test(z)||z==='Atlantic/Azores'||z==='Atlantic/Madeira'?'eu':'us')}}}catch(e){r=L||'us'}d.dataset.region=r;try{if(!matchMedia('(prefers-reduced-motion: reduce)').matches)d.classList.add('cu-ready')}catch(e){}})();`;
+  `(function(){var d=document.documentElement,ok=['us','eu','in'],r='',L='${def}';try{r=(new URLSearchParams(location.search).get('region')||'').toLowerCase();if(ok.indexOf(r)<0){var k=(document.cookie.match(/(?:^|; )anth-region=([a-z]+)/)||[])[1]||'';if(L){r=L}else if(/(?:^|; )anth-currency=us/.test(document.cookie)){r='us'}else if(ok.indexOf(k)>=0){r=k}else{var z=Intl.DateTimeFormat().resolvedOptions().timeZone||'';r=(z==='Asia/Kolkata'||z==='Asia/Calcutta')?'in':(/^Europe\\/(Vienna|Brussels|Berlin|Paris|Rome|Madrid|Amsterdam|Dublin|Lisbon|Helsinki|Athens|Luxembourg|Malta|Bratislava|Ljubljana|Tallinn|Riga|Vilnius|Zagreb|Sofia|Andorra|Monaco|San_Marino|Vatican|Busingen)$/.test(z)||z==='Atlantic/Azores'||z==='Atlantic/Madeira'?'eu':'us')}}}catch(e){r=L||'us'}d.dataset.region=r;try{if(!matchMedia('(prefers-reduced-motion: reduce)').matches)d.classList.add('cu-ready')}catch(e){}})();`;
 
 export default function RootShell({ lang, children }: Readonly<{ lang: Locale; children: React.ReactNode }>) {
   return (
