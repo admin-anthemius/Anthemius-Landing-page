@@ -16,6 +16,7 @@
 // no version banner, no summary. The PDF is the artefact that was actually
 // executed, so it is shown as-is.
 import { useEffect, useState } from "react";
+import type { Dict } from "@/lib/content";
 import styles from "./LegalDialog.module.css";
 
 export type LegalDocId = "privacy" | "terms";
@@ -28,18 +29,20 @@ export type LegalDocId = "privacy" | "terms";
  * document version (LV310726) instead of a content hash, so a re-issue is a
  * new URL rather than a silently swapped file sitting behind a cache.
  */
-const DOCS: Record<LegalDocId, { title: string; pdf: string }> = {
-  privacy: { title: "PRIVACY POLICY", pdf: "/legal/privacy-policy-LV310726.pdf" },
-  terms: { title: "TERMS OF USE", pdf: "/legal/terms-of-use-LV310726.pdf" },
+const DOCS: Record<LegalDocId, { pdf: string }> = {
+  privacy: { pdf: "/legal/privacy-policy-LV310726.pdf" },
+  terms: { pdf: "/legal/terms-of-use-LV310726.pdf" },
 };
 
 interface Props {
   /** Which document to show, or null to close. */
   doc: LegalDocId | null;
   onClose: () => void;
+  /** Dialog wording in the page's language (the PDFs themselves are the signed originals). */
+  t: Dict["legal"];
 }
 
-export function LegalDialog({ doc, onClose }: Props) {
+export function LegalDialog({ doc, onClose, t }: Props) {
   const active = doc ? DOCS[doc] : null;
 
   useEffect(() => {
@@ -52,6 +55,7 @@ export function LegalDialog({ doc, onClose }: Props) {
   }, [doc, onClose]);
 
   if (!doc || !active) return null;
+  const title = t[doc];
 
   // #toolbar=0&navpanes=0 asks the browser's built-in PDF viewer to drop its
   // chrome, which is where the download and print buttons live.
@@ -68,11 +72,11 @@ export function LegalDialog({ doc, onClose }: Props) {
         onMouseDown={(e) => e.stopPropagation()}
         role="dialog"
         aria-modal="true"
-        aria-label={active.title}
+        aria-label={title}
       >
         <div className={styles.head}>
-          <h2 className={styles.title}>{active.title}</h2>
-          <button className={styles.close} onClick={onClose} aria-label="Close">
+          <h2 className={styles.title}>{title}</h2>
+          <button className={styles.close} onClick={onClose} aria-label={t.close}>
             ✕
           </button>
         </div>
@@ -83,12 +87,12 @@ export function LegalDialog({ doc, onClose }: Props) {
           {/* Keyed by pdf so switching documents mounts a fresh instance —
               each one starts at "checking" on its own rather than needing an
               effect to reset state left over from the previous document. */}
-          <PdfPane key={active.pdf} pdf={active.pdf} title={active.title} />
+          <PdfPane key={active.pdf} pdf={active.pdf} title={title} t={t} />
         </div>
 
         <div className={styles.actions}>
           <button className={styles.btn} onClick={onClose}>
-            Close
+            {t.close}
           </button>
         </div>
       </div>
@@ -103,7 +107,7 @@ export function LegalDialog({ doc, onClose }: Props) {
 // "checking" is just its initial state rather than something an effect has
 // to reset — the effect here only ever calls setStatus from its async
 // callbacks, never synchronously in the body.
-function PdfPane({ pdf, title }: { pdf: string; title: string }) {
+function PdfPane({ pdf, title, t }: { pdf: string; title: string; t: Dict["legal"] }) {
   const [status, setStatus] = useState<"checking" | "ready" | "missing">("checking");
 
   useEffect(() => {
@@ -132,13 +136,13 @@ function PdfPane({ pdf, title }: { pdf: string; title: string }) {
   }
 
   if (status === "checking") {
-    return <p className={styles.note}>Loading…</p>;
+    return <p className={styles.note}>{t.loading}</p>;
   }
 
   // Says the document is unavailable rather than pretending it is merely
   // slow — a spinner that never resolves hides the fact that a legal
   // document isn't being shown.
-  return <p className={styles.note}>This document is not available yet.</p>;
+  return <p className={styles.note}>{t.missing}</p>;
 }
 
 /**
@@ -149,10 +153,10 @@ function PdfPane({ pdf, title }: { pdf: string; title: string }) {
  * that was opened — `open("terms")` and `open("privacy")` are independent
  * entry points with no way to cross from one to the other.
  */
-export function useLegalDialog() {
+export function useLegalDialog(t: Dict["legal"]) {
   const [doc, setDoc] = useState<LegalDocId | null>(null);
   return {
     open: (which: LegalDocId) => setDoc(which),
-    dialog: <LegalDialog doc={doc} onClose={() => setDoc(null)} />,
+    dialog: <LegalDialog doc={doc} onClose={() => setDoc(null)} t={t} />,
   };
 }

@@ -2,12 +2,13 @@
 
 import { useEffect } from "react";
 
-/** Same elements the CSS reveals with `animation-timeline: view()` (see the motion section of globals.css). */
-const TARGETS = ".col-head, .adds-list > div, .month-head, .screen, .rates tbody tr, .close-main, .terms";
+/** Everything that reveals on scroll. SOLID ones move but never fade (prices, button, terms). */
+const FADE = ".col-head, .adds-list > div, .month-head, .screen";
+const SOLID = ".rates tbody tr, .close-main, .terms li";
 
 /**
- * Scroll reveal for browsers without scroll-driven animations. Renders nothing; where the CSS
- * version works, or the visitor prefers reduced motion, it does nothing at all.
+ * Scroll reveals, played once each. Renders nothing; if the visitor prefers reduced motion it does
+ * nothing at all, and anything already on screen is left alone so nothing blinks on load.
  */
 export default function RevealFallback() {
   // Workflow timeline: a time-based sequence (rail, markers, titles, descriptions) played once when
@@ -34,7 +35,6 @@ export default function RevealFallback() {
   }, []);
 
   useEffect(() => {
-    if (CSS.supports("animation-timeline: view()")) return;
     if (window.matchMedia("(prefers-reduced-motion: reduce)").matches) return;
 
     const io = new IntersectionObserver(
@@ -47,17 +47,20 @@ export default function RevealFallback() {
       },
       { rootMargin: "0px 0px -8% 0px", threshold: 0.08 },
     );
-    const els = [...document.querySelectorAll<HTMLElement>(TARGETS)];
+    const els = [...document.querySelectorAll<HTMLElement>(`${FADE}, ${SOLID}`)].filter(
+      (el) => el.getBoundingClientRect().top >= window.innerHeight,
+    );
     for (const el of els) {
       // stagger siblings (list rows, step columns) the way the CSS version does
       const i = el.parentElement ? [...el.parentElement.children].indexOf(el) : 0;
-      el.style.setProperty("--d", `${Math.min(i, 4) * 70}ms`);
+      el.style.setProperty("--d", `${Math.min(i, 4) * 60}ms`);
       el.classList.add("will-reveal");
+      if (el.matches(SOLID)) el.classList.add("solid");
       io.observe(el);
     }
     return () => {
       io.disconnect();
-      for (const el of els) el.classList.remove("will-reveal", "in");
+      for (const el of els) el.classList.remove("will-reveal", "solid", "in");
     };
   }, []);
   return null;

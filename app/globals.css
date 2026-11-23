@@ -604,33 +604,20 @@ figcaption {
 .month-inner {
   max-width: calc(var(--max) + 2 * var(--gutter));
   margin: 0 auto;
-  padding: clamp(64px, 9vw, 128px) var(--gutter);
+  padding: clamp(56px, 7vw, 100px) var(--gutter);
 }
 .month-head {
   display: grid;
-  grid-template-columns: minmax(0, 7fr) minmax(0, 5fr);
-  gap: var(--gap-col);
-  align-items: end;
+  gap: 20px;
 }
 .month h2 {
-  font-size: clamp(40px, 5.6vw, 76px);
-  line-height: 1;
+  font-size: clamp(34px, 4.6vw, 62px);
+  line-height: 1.04;
+  text-wrap: balance;
 }
-.month blockquote {
-  padding-left: 22px;
-  border-left: 1px solid var(--text-dark);
-}
-.month blockquote p {
-  font-family: var(--serif);
-  font-size: clamp(19px, 1.7vw, 23px);
-  line-height: 1.34;
-  text-wrap: pretty;
-}
-.month cite {
-  display: block;
-  margin-top: 12px;
-  font-style: normal;
-  font-size: 14px;
+.month-head p {
+  max-width: 30em;
+  line-height: 1.55;
   color: var(--text-dark-2);
 }
 .screen {
@@ -788,7 +775,12 @@ figcaption {
 }
 .rates tbody th {
   font-size: 18px;
-  width: 44%;
+  width: 34%;
+}
+/* the standard price after the promotional month: quieter than the offer price */
+.rates .rate-then {
+  font-size: 18px;
+  font-variant-numeric: tabular-nums lining-nums;
 }
 .rates .rate {
   font-family: var(--serif);
@@ -936,6 +928,25 @@ html[data-region="in"] .row-in .yours {
   display: none;
 }
 
+/* ── counting prices (components/CountUp.tsx) ───────────────────────────────
+   A hidden copy of the final text sets the width; the counting text sits on top, so nothing around it
+   moves while the digits run. cu-ready is set before first paint and only without reduced motion. The hero
+   price does not count: it must be readable from the first frame. */
+.cu {
+  position: relative;
+  display: inline-block;
+  font-variant-numeric: tabular-nums lining-nums;
+}
+.cu-size {
+  visibility: hidden;
+}
+.cu-val {
+  position: absolute;
+  left: 0;
+  top: 0;
+  white-space: nowrap;
+}
+
 /* ── mobile dock ────────────────────────────────────────────────────────── */
 .dock {
   display: none;
@@ -1066,6 +1077,17 @@ html[data-region="in"] .row-in .yours {
     flex-direction: column;
     gap: 2px;
   }
+  /* phones: the currency symbol already says it, and four columns would crowd the amounts */
+  .rates thead th:last-child,
+  .rates td:last-child {
+    display: none;
+  }
+  .rates .rate {
+    font-size: 28px;
+  }
+  .rates .rate-then {
+    font-size: 16px;
+  }
   .yours {
     margin: 2px 0 0;
   }
@@ -1120,7 +1142,7 @@ html[data-region="in"] .row-in .yours {
 /* ── motion ─────────────────────────────────────────────────────────────────
    One easing curve, three durations, and every effect is an enhancement:
    - hero: a staggered load sequence in plain CSS (no JS, so nothing waits on hydration)
-   - sections: reveal on scroll via scroll-driven animations, only where supported
+   - sections: reveal once on scroll (IntersectionObserver); prices, button and terms never fade
    - the price itself is never faded in: it is the largest element and must paint at once
    Reduced-motion users get the finished page with no movement at all. */
 :root {
@@ -1143,11 +1165,6 @@ html[data-region="in"] .row-in .yours {
       clip-path: inset(0 0 100% 0);
     }
   }
-  @keyframes plate-zoom {
-    from {
-      transform: scale(1.06);
-    }
-  }
   @keyframes swap {
     from {
       opacity: 0.35;
@@ -1157,28 +1174,26 @@ html[data-region="in"] .row-in .yours {
 
   /* hero load sequence */
   .kicker {
-    animation: rise 0.6s var(--ease) backwards;
+    animation: rise 0.5s var(--ease) backwards;
   }
   .price {
-    animation: rise-solid 0.8s var(--ease) 0.05s backwards;
+    animation: rise-solid 0.6s var(--ease) backwards;
   }
   .price-for {
-    animation: rise 0.7s var(--ease) 0.16s backwards;
+    animation: rise 0.5s var(--ease) 0.06s backwards;
   }
   .lede {
-    animation: rise 0.7s var(--ease) 0.26s backwards;
+    animation: rise 0.5s var(--ease) 0.12s backwards;
   }
+  /* moves but never fades: the button is there from the first frame */
   .hero-action {
-    animation: rise 0.7s var(--ease) 0.36s backwards;
+    animation: rise-solid 0.5s var(--ease) 0.18s backwards;
   }
   .plate-img {
-    animation: plate-in 0.9s var(--ease) 0.12s backwards;
-  }
-  .plate-img img {
-    animation: plate-zoom 1.5s var(--ease) 0.12s backwards;
+    animation: plate-in 0.7s var(--ease) 0.12s backwards;
   }
   .plate figcaption {
-    animation: rise 0.6s var(--ease) 0.6s backwards;
+    animation: rise 0.5s var(--ease) 0.24s backwards;
   }
 
   /* region change: the new price settles in instead of snapping */
@@ -1208,13 +1223,13 @@ html[data-region="in"] .row-in .yours {
     }
   }
   .top-bar {
-    animation: drop 0.6s var(--ease) backwards;
+    animation: drop 0.45s var(--ease) backwards;
   }
   .top-bar .wordmark-mark {
-    animation: mark-in 0.9s var(--ease) 0.2s backwards;
+    animation: mark-in 0.6s var(--ease) 0.1s backwards;
   }
   .top-bar .wordmark-word {
-    animation: rise 0.7s var(--ease) 0.3s backwards;
+    animation: rise 0.5s var(--ease) 0.16s backwards;
   }
 
   /* anchors and the skip link glide instead of jumping, and stop below the sticky header */
@@ -1224,8 +1239,11 @@ html[data-region="in"] .row-in .yours {
   }
 
   /* buttons: the arrow leads, the way the rest of the page reads */
+  .btn {
+    transition: background 0.18s, color 0.18s, transform 0.12s;
+  }
   .btn svg {
-    transition: transform 0.25s var(--ease), color 0.2s;
+    transition: transform 0.2s var(--ease);
   }
   @media (hover: hover) {
     .btn:hover svg {
@@ -1239,14 +1257,17 @@ html[data-region="in"] .row-in .yours {
     transition: color 0.2s;
   }
 
-  /* Browsers without scroll-driven animations (Firefox, Safari before 26): the same reveal, driven by
-     IntersectionObserver in components/RevealFallback.tsx. The classes are added by that script,
-     so without JavaScript nothing is ever hidden. */
+  /* Sections reveal once, as they first scroll into view (components/RevealFallback.tsx). They never replay.
+     The classes are added by that script, so without JavaScript nothing is ever hidden. */
   .will-reveal {
     opacity: 0;
-    transform: translateY(24px);
-    transition: opacity 0.7s var(--ease), transform 0.7s var(--ease);
+    transform: translateY(12px);
+    transition: opacity 0.5s var(--ease), transform 0.5s var(--ease);
     transition-delay: var(--d, 0ms);
+  }
+  /* prices, the closing button and the terms move but never fade: they stay readable throughout */
+  .will-reveal.solid {
+    opacity: 1;
   }
   .will-reveal.in {
     opacity: 1;
@@ -1272,22 +1293,6 @@ html[data-region="in"] .row-in .yours {
         box-shadow: 0 10px 28px -16px rgba(0, 0, 0, 0.55);
       }
     }
-    @keyframes drift {
-      from {
-        transform: translateY(28px);
-      }
-      to {
-        transform: translateY(-28px);
-      }
-    }
-    @keyframes settle {
-      from {
-        transform: scale(1.05);
-      }
-      to {
-        transform: scale(1);
-      }
-    }
     /* reading progress: a 2px terracotta line along the top edge */
     .scroll-progress {
       display: block;
@@ -1303,58 +1308,9 @@ html[data-region="in"] .row-in .yours {
     }
     /* the sticky header gains a shadow as the page starts to move under it (keeps its load-in drop) */
     .top-bar {
-      animation: drop 0.6s var(--ease) backwards, bar-shadow linear both;
+      animation: drop 0.45s var(--ease) backwards, bar-shadow linear both;
       animation-timeline: auto, scroll(root);
       animation-range: normal, 0 140px;
-    }
-    /* hero photograph drifts against the scroll, a touch slower than the page */
-    .plate {
-      animation: drift linear both;
-      animation-timeline: view();
-      animation-range: cover;
-    }
-    /* the editor screenshot settles to its true size as it arrives */
-    .screen img {
-      animation: settle linear both;
-      animation-timeline: view();
-      animation-range: entry 0% cover 45%;
-    }
-  }
-
-  /* sections reveal as they enter the viewport (Chrome, Edge, Safari 26+; elsewhere the fallback above) */
-  @supports (animation-timeline: view()) {
-    @keyframes reveal {
-      from {
-        opacity: 0;
-        transform: translateY(24px);
-      }
-      to {
-        opacity: 1;
-        transform: none;
-      }
-    }
-    .col-head,
-    .adds-list > div,
-    .month-head,
-    .screen,
-    .rates tbody tr,
-    .close-main,
-    .terms {
-      --i: 0;
-      animation: reveal linear both;
-      animation-timeline: view();
-      animation-range: entry calc(var(--i) * 4%) entry calc(30% + var(--i) * 4%);
-    }
-    .adds-list > div:nth-child(2),
-    .rates tbody tr:nth-child(2) {
-      --i: 1;
-    }
-    .adds-list > div:nth-child(3),
-    .rates tbody tr:nth-child(3) {
-      --i: 2;
-    }
-    .adds-list > div:nth-child(4) {
-      --i: 3;
     }
   }
 }
@@ -1369,6 +1325,13 @@ html[data-region="in"] .row-in .yours {
 }
 
 @media print {
+  /* paper always gets the real price, even if a counter has not run yet */
+  .cu-size {
+    visibility: visible;
+  }
+  .cu-val {
+    display: none;
+  }
   html,
   body {
     background: #fff;

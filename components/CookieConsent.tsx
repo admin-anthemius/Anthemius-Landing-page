@@ -2,6 +2,7 @@
 
 import { useCallback, useState, useSyncExternalStore } from "react";
 import { CONSENT_EVENT, readConsent, saveConsent, type Consent } from "@/lib/consent";
+import type { Dict } from "@/lib/content";
 import { useLegalDialog } from "./LegalDialog";
 import styles from "./CookieConsent.module.css";
 
@@ -32,9 +33,9 @@ const serverSnapshot = () => "server";
  * the footer). Non-blocking: the page stays usable. Text comes from the server layout
  * in the page's language.
  */
-export default function CookieConsent({ text }: { text: ConsentText }) {
+export default function CookieConsent({ text, legalText }: Readonly<{ text: ConsentText; legalText: Dict["legal"] }>) {
   const state = useSyncExternalStore(subscribe, snapshot, serverSnapshot);
-  const legal = useLegalDialog();
+  const legal = useLegalDialog(legalText);
   const [leaving, setLeaving] = useState(false);
 
   const answer = useCallback((c: Consent) => {
