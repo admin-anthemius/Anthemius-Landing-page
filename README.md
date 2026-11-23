@@ -25,7 +25,7 @@ Same rules as anthemius.io (`middleware.ts`, `lib/i18n.ts`, `lib/consent.ts`):
 
 ## Price region
 
-The price follows the language (`en-in` → ₹, `nl`/`fr`/`es`/`fi` → €). On the English page it follows the visitor's country (`anth-region` session cookie set by the middleware: India ₹, euro countries €, everyone else $), then the browser time zone. An ad link can force a region: `/?region=us|eu|in&utm_source=...`. `utm_*`, the region and `promo=black-friday-2026` are passed on to the checkout link.
+The price follows the language (`en-in` → ₹, `nl`/`fr`/`es`/`fi` → €). Picking English in the language menu shows $ from then on (`anth-currency` cookie). Otherwise the English page follows the visitor's country (`anth-region` session cookie set by the middleware: India ₹, euro countries €, everyone else $), then the browser time zone. An ad link can force a region: `/?region=us|eu|in&utm_source=...`. `utm_*`, the region and `promo=black-friday-2026` are passed on to the checkout link.
 
 ## Type
 
