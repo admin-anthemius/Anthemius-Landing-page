@@ -2,9 +2,9 @@ import type { Dict } from "./en";
 
 export const nl: Dict = {
   meta: {
-    title: "Black Friday: een maand Anthemius Pro voor €0,99",
+    title: "Black Friday: een maand Anthemius Studio voor €0,99",
     description:
-      "Ontwerp, richt in en loop door interieurs in de browser. Tot 30 november kost je eerste maand Anthemius Pro $0.99 in de VS, €0,99 in Europa en ₹99 in India.",
+      "Ontwerp, richt in en loop door interieurs in de browser. Tot 30 november kost je eerste maand Anthemius Studio $0.99 in de VS, €0,99 in Europa en ₹99 in India.",
   },
   langName: "Dutch",
   banner: {
@@ -35,17 +35,17 @@ export const nl: Dict = {
     p: "Het gratis plan laat je onbeperkt ontwerpen en experimenteren. {plan} is voor het moment waarop het werk naar een klant gaat.",
     items: [
       { title: "Schone exports", body: "CAD-bestanden en tekeningen zonder watermerk, klaar om naar een klant of aannemer te sturen." },
-      { title: "3D zonder watermerk", body: "Presenteer het model als je eigen werk, op het scherm of via een gedeelde link." },
-      { title: "Walk-modus en materiaalafwerkingen", body: "Loop door de ruimte met vloeren, wanden en verlichting uit de presetbibliotheek." },
       { title: "Voorrangsondersteuning", body: "Vragen worden als eerste beantwoord, door de mensen die het product bouwen." },
+      { title: "Teamsamenwerking", body: "Werk met je team in hetzelfde project." },
+      { title: "Eigen materialen en meubels", body: "Voeg je eigen materialen en meubels toe, naast de presetbibliotheek." },
+      { title: "Materiaalstaat (BOM)", body: "Een materiaallijst met hoeveelheden, rechtstreeks uit de plattegrond." },
     ],
   },
   month: {
-    h2a: "Een maand is genoeg",
-    h2b1: "voor een ",
-    h2b2: "heel project.",
-    quote: "“Ik kon het project in 15 minuten maken met Anthemius, waar het normaal 5 tot 7 dagen duurt.”",
-    cite: "Pratik Ghodke, vroege gebruiker",
+    h2a: "Eén plattegrond, van de eerste muur",
+    h2b1: "tot de ",
+    h2b2: "laatste hoeveelheden.",
+    p: "Indelen, aanpassen, aankleden, doorlopen en calculeren. Alles in één bestand, in je browser.",
     screenAlt: "De Anthemius-editor: links een 2D-plattegrond van een kantoor, rechts dezelfde verdieping in 3D",
     screenCaption: "De plattegrond en het 3D-model zijn één bestand. Pas het ene aan en het andere volgt.",
     steps: [
@@ -63,6 +63,7 @@ export const nl: Dict = {
     region: "Regio",
     month: "Eerste maand {plan}",
     billed: "Gefactureerd in",
+    then: "Daarna, per gebruiker / maand",
     yours: "Jouw regio",
   },
   close: {
@@ -82,6 +83,13 @@ export const nl: Dict = {
     terms: "Gebruiksvoorwaarden",
     privacy: "Privacybeleid",
     copy: "© 2026 Anthemius.",
+  },
+  legal: {
+    terms: "Gebruiksvoorwaarden",
+    privacy: "Privacybeleid",
+    close: "Sluiten",
+    loading: "Laden…",
+    missing: "Dit document is nog niet beschikbaar.",
   },
   consent: {
     title: "Cookies",

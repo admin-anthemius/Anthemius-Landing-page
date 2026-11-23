@@ -2,9 +2,9 @@ import type { Dict } from "./en";
 
 export const fi: Dict = {
   meta: {
-    title: "Black Friday: kuukausi Anthemius Prota hintaan €0,99",
+    title: "Black Friday: kuukausi Anthemius Studiota hintaan €0,99",
     description:
-      "Suunnittele, sisusta ja kävele sisätiloissa selaimessa. 30. marraskuuta asti ensimmäinen kuukautesi Anthemius Prota maksaa $0.99 Yhdysvalloissa, €0,99 Euroopassa ja ₹99 Intiassa.",
+      "Suunnittele, sisusta ja kävele sisätiloissa selaimessa. 30. marraskuuta asti ensimmäinen kuukautesi Anthemius Studiota maksaa $0.99 Yhdysvalloissa, €0,99 Euroopassa ja ₹99 Intiassa.",
   },
   langName: "Finnish",
   banner: {
@@ -16,8 +16,8 @@ export const fi: Dict = {
   nav: { home: "Anthemius etusivu", language: "Kieli" },
   ends: { short: "30. marraskuuta", long: "30. marraskuuta 2026" },
   regions: {
-    us: { label: "Yhdysvallat", spoken: "99 senttiä" },
-    eu: { label: "Eurooppa", spoken: "99 euron senttiä" },
+    us: { label: "Yhdysvallat", spoken: "0,99 dollaria" },
+    eu: { label: "Eurooppa", spoken: "99 senttiä" },
     in: { label: "Intia", spoken: "99 rupiaa" },
   },
   hero: {
@@ -32,20 +32,20 @@ export const fi: Dict = {
   },
   adds: {
     h2: "Mitä {plan} lisää",
-    p: "Ilmainen taso antaa suunnitella ja kokeilla rajattomasti. {plan} on hetkeen, jolloin työ lähtee asiakkaalle.",
+    p: "Ilmainen taso antaa suunnitella ja kokeilla rajattomasti. {plan} on sitä hetkeä varten, jolloin työ lähtee asiakkaalle.",
     items: [
       { title: "Puhtaat viennit", body: "CAD-tiedostot ja piirustukset ilman vesileimaa, valmiina lähetettäväksi asiakkaalle tai urakoitsijalle." },
-      { title: "3D ilman vesileimaa", body: "Esitä malli omana työnäsi, näytöllä tai jaetulla linkillä." },
-      { title: "Kävelytila ja materiaalipinnat", body: "Astu tilaan lattioiden, seinien ja valaistuksen kanssa esiasetuskirjastosta." },
-      { title: "Ensisijainen tuki", body: "Kysymyksiisi vastataan ensin, tuotteen tekevien ihmisten toimesta." },
+      { title: "Ensisijainen tuki", body: "Kysymyksiisi vastataan ensimmäisenä, ja vastaajina ovat tuotteen tekijät." },
+      { title: "Tiimiyhteistyö", body: "Työskentele samassa projektissa tiimisi kanssa." },
+      { title: "Omat materiaalit ja kalusteet", body: "Lisää omat materiaalisi ja kalusteesi esiasetuskirjaston lisäksi." },
+      { title: "Materiaaliluettelo (BOM)", body: "Materiaaliluettelo määrineen suoraan pohjasta." },
     ],
   },
   month: {
-    h2a: "Kuukausi riittää",
+    h2a: "Yksi pohja, ensimmäisestä seinästä",
     h2b1: "",
-    h2b2: "kokonaiseen projektiin.",
-    quote: "”Pystyin luomaan projektin 15 minuutissa Anthemiuksella, kun siihen yleensä menee 5–7 päivää.”",
-    cite: "Pratik Ghodke, varhainen käyttäjä",
+    h2b2: "lopullisiin määriin.",
+    p: "Suunnittele, muokkaa, sisusta, kävele ja laske määrät. Kaikki yhdessä tiedostossa, selaimessasi.",
     screenAlt: "Anthemius-editori: toimiston 2D-pohja vasemmalla ja sama kerros 3D:nä oikealla",
     screenCaption: "Pohja ja 3D-malli ovat yksi tiedosto. Muokkaa toista, ja toinen seuraa.",
     steps: [
@@ -53,7 +53,7 @@ export const fi: Dict = {
       ["Muokkaa", "Siirrä seinää tai vaihda huonetta. Pinta-alat, 3D-malli ja kustannukset seuraavat mukana."],
       ["Sisusta", "Lisää pinnat ja valaistus Studiossa ja aseta vuorokaudenaika."],
       ["Kävele", "Astu tilaan asiakkaasi kanssa, palaverin aikana."],
-      ["Määrälaske", "Ota materiaaliluettelo ja lattiakustannus suoraan pohjasta."],
+      ["Laske määrät", "Ota materiaaliluettelo ja lattiakustannus suoraan pohjasta."],
     ],
   },
   rates: {
@@ -63,6 +63,7 @@ export const fi: Dict = {
     region: "Alue",
     month: "Ensimmäinen {plan}-kuukausi",
     billed: "Laskutusvaluutta",
+    then: "Sen jälkeen, käyttäjä / kk",
     yours: "Sinun alueesi",
   },
   close: {
@@ -82,6 +83,13 @@ export const fi: Dict = {
     terms: "Käyttöehdot",
     privacy: "Tietosuojakäytäntö",
     copy: "© 2026 Anthemius.",
+  },
+  legal: {
+    terms: "Käyttöehdot",
+    privacy: "Tietosuojakäytäntö",
+    close: "Sulje",
+    loading: "Ladataan…",
+    missing: "Tämä asiakirja ei ole vielä saatavilla.",
   },
   consent: {
     title: "Evästeet",

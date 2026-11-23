@@ -1,4 +1,5 @@
 import Image from "next/image";
+import CountUp from "@/components/CountUp";
 import Cta from "@/components/Cta";
 import Dock from "@/components/Dock";
 import Footer from "@/components/Footer";
@@ -31,7 +32,8 @@ export default function Landing({ lang }: Readonly<{ lang: Locale }>) {
   const t = DICTS[lang];
   const vars = { plan: OFFER.plan, date: t.ends.short, endsOn: t.ends.long };
   const f = (s: string) => fmt(s, vars);
-  const price = <Price lang={lang} />;
+  const price = <Price lang={lang} />; // hero and mobile bar: readable from the first frame
+  const closePrice = <Price lang={lang} count />;
   const spoken = <Price lang={lang} field="spoken" />;
 
   return (
@@ -101,7 +103,7 @@ export default function Landing({ lang }: Readonly<{ lang: Locale }>) {
           </dl>
         </section>
 
-        {/* ── A month is enough ────────────────────────────────────────── */}
+        {/* ── Workflow ─────────────────────────────────────────────────── */}
         <section className="month">
           <div className="month-inner">
             <div className="month-head">
@@ -111,10 +113,7 @@ export default function Landing({ lang }: Readonly<{ lang: Locale }>) {
                 {t.month.h2b1}
                 <em>{t.month.h2b2}</em>
               </h2>
-              <blockquote>
-                <p>{t.month.quote}</p>
-                <cite>{t.month.cite}</cite>
-              </blockquote>
+              <p>{t.month.p}</p>
             </div>
 
             <figure className="screen">
@@ -148,6 +147,7 @@ export default function Landing({ lang }: Readonly<{ lang: Locale }>) {
               <tr>
                 <th scope="col">{t.rates.region}</th>
                 <th scope="col">{f(t.rates.month)}</th>
+                <th scope="col">{t.rates.then}</th>
                 <th scope="col">{t.rates.billed}</th>
               </tr>
             </thead>
@@ -158,7 +158,12 @@ export default function Landing({ lang }: Readonly<{ lang: Locale }>) {
                     {t.regions[r].label}
                     <span className="yours">{t.rates.yours}</span>
                   </th>
-                  <td className="rate">{OFFER.prices[r].amount}</td>
+                  <td className="rate">
+                    <CountUp text={OFFER.prices[r].amount} />
+                  </td>
+                  <td className="rate-then">
+                    <CountUp text={OFFER.prices[r].then} />
+                  </td>
                   <td>{OFFER.prices[r].currency}</td>
                 </tr>
               ))}
@@ -170,7 +175,7 @@ export default function Landing({ lang }: Readonly<{ lang: Locale }>) {
         <section className="close">
           <div className="close-main">
             <h2>
-              {withPrice(t.close.h2a, price)}
+              {withPrice(t.close.h2a, closePrice)}
               <br />
               <em>{t.close.h2b}</em>
             </h2>
@@ -187,7 +192,7 @@ export default function Landing({ lang }: Readonly<{ lang: Locale }>) {
         </section>
       </main>
 
-      <Footer lang={lang} t={t.footer} cookieSettings={t.consent.settings} />
+      <Footer lang={lang} t={t.footer} legalText={t.legal} cookieSettings={t.consent.settings} />
 
       {/* Mobile: the offer stays within reach while scrolling */}
       <Dock>

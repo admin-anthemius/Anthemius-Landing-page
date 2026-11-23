@@ -2,9 +2,9 @@ import type { Dict } from "./en";
 
 export const fr: Dict = {
   meta: {
-    title: "Black Friday : un mois d’Anthemius Pro pour €0,99",
+    title: "Black Friday : un mois d’Anthemius Studio pour €0,99",
     description:
-      "Concevez, aménagez et visitez des intérieurs dans le navigateur. Jusqu’au 30 novembre, votre premier mois d’Anthemius Pro coûte $0.99 aux États-Unis, €0,99 en Europe et ₹99 en Inde.",
+      "Concevez, aménagez et visitez des intérieurs dans le navigateur. Jusqu’au 30 novembre, votre premier mois d’Anthemius Studio coûte $0.99 aux États-Unis, €0,99 en Europe et ₹99 en Inde.",
   },
   langName: "French",
   banner: {
@@ -35,17 +35,17 @@ export const fr: Dict = {
     p: "L’offre gratuite vous permet de concevoir et d’expérimenter sans limite. {plan} est pour le moment où le travail part chez un client.",
     items: [
       { title: "Exports propres", body: "Fichiers CAO et plans sans filigrane, prêts à envoyer à un client ou à un entrepreneur." },
-      { title: "3D sans filigrane", body: "Présentez le modèle comme votre propre travail, à l’écran ou via un lien partagé." },
-      { title: "Mode visite et finitions de matériaux", body: "Entrez dans l’espace avec sols, murs et éclairages issus de la bibliothèque de préréglages." },
       { title: "Support prioritaire", body: "Vos questions sont traitées en premier, par les personnes qui construisent le produit." },
+      { title: "Collaboration d’équipe", body: "Travaillez sur le même projet avec votre équipe." },
+      { title: "Matériaux et mobilier personnalisés", body: "Ajoutez vos propres matériaux et meubles, en plus de la bibliothèque de préréglages." },
+      { title: "Nomenclature des matériaux (BOM)", body: "Une liste de matériaux avec quantités, directement issue du plan." },
     ],
   },
   month: {
-    h2a: "Un mois suffit",
-    h2b1: "pour un ",
-    h2b2: "projet entier.",
-    quote: "« J’ai pu créer le projet en 15 minutes avec Anthemius, alors qu’il faut généralement 5 à 7 jours. »",
-    cite: "Pratik Ghodke, premier utilisateur",
+    h2a: "Un seul plan, du premier mur",
+    h2b1: "aux ",
+    h2b2: "quantités finales.",
+    p: "Agencez, modifiez, habillez, visitez et chiffrez. Le tout dans un seul fichier, dans votre navigateur.",
     screenAlt: "L’éditeur Anthemius : un plan 2D de bureau à gauche et le même étage en 3D à droite",
     screenCaption: "Le plan et le modèle 3D forment un seul fichier. Modifiez l’un, l’autre suit.",
     steps: [
@@ -63,6 +63,7 @@ export const fr: Dict = {
     region: "Région",
     month: "Premier mois de {plan}",
     billed: "Facturé en",
+    then: "Ensuite, par utilisateur / mois",
     yours: "Votre région",
   },
   close: {
@@ -82,6 +83,13 @@ export const fr: Dict = {
     terms: "Conditions d’utilisation",
     privacy: "Politique de confidentialité",
     copy: "© 2026 Anthemius.",
+  },
+  legal: {
+    terms: "Conditions d’utilisation",
+    privacy: "Politique de confidentialité",
+    close: "Fermer",
+    loading: "Chargement…",
+    missing: "Ce document n’est pas encore disponible.",
   },
   consent: {
     title: "Cookies",

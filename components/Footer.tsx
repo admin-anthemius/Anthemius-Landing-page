@@ -7,8 +7,13 @@ import type { Dict } from "@/lib/content";
 import { useLegalDialog } from "./LegalDialog";
 
 /** One-row footer: brand lockup and copyright on the left; site, pricing, contact, legal and cookie links on the right. */
-export default function Footer({ lang, t, cookieSettings }: Readonly<{ lang: Locale; t: Dict["footer"]; cookieSettings: string }>) {
-  const legal = useLegalDialog();
+export default function Footer({
+  lang,
+  t,
+  legalText,
+  cookieSettings,
+}: Readonly<{ lang: Locale; t: Dict["footer"]; legalText: Dict["legal"]; cookieSettings: string }>) {
+  const legal = useLegalDialog(legalText);
   const base = siteHome(lang);
   return (
     <footer className="foot">
@@ -21,7 +26,7 @@ export default function Footer({ lang, t, cookieSettings }: Readonly<{ lang: Loc
       </span>
       <span className="foot-links">
         <a href={base}>anthemius.io</a>
-        <a href={sitePricing(lang)}>{t.pricing}</a>
+        {/* <a href={sitePricing(lang)}>{t.pricing}</a> */}
         <a href="mailto:info@anthemius.io">info@anthemius.io</a>
         <button type="button" onClick={() => legal.open("terms")}>
           {t.terms}

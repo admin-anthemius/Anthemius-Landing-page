@@ -2,9 +2,9 @@ import type { Dict } from "./en";
 
 export const es: Dict = {
   meta: {
-    title: "Black Friday: un mes de Anthemius Pro por €0,99",
+    title: "Black Friday: un mes de Anthemius Studio por €0,99",
     description:
-      "Diseña, viste y recorre interiores en el navegador. Hasta el 30 de noviembre, tu primer mes de Anthemius Pro cuesta $0.99 en EE. UU., €0,99 en Europa y ₹99 en la India.",
+      "Diseña, viste y recorre interiores en el navegador. Hasta el 30 de noviembre, tu primer mes de Anthemius Studio cuesta $0.99 en EE. UU., €0,99 en Europa y ₹99 en la India.",
   },
   langName: "Spanish",
   banner: {
@@ -35,17 +35,17 @@ export const es: Dict = {
     p: "El plan gratuito te permite diseñar y experimentar sin límites. {plan} es para el momento en que el trabajo llega a un cliente.",
     items: [
       { title: "Exportaciones limpias", body: "Archivos CAD y planos sin marca de agua, listos para enviar a un cliente o a un contratista." },
-      { title: "3D sin marca de agua", body: "Presenta el modelo como trabajo propio, en pantalla o en un enlace compartido." },
-      { title: "Modo paseo y acabados de materiales", body: "Entra en el espacio con suelos, paredes e iluminación de la biblioteca de ajustes preestablecidos." },
       { title: "Soporte prioritario", body: "Tus preguntas se responden primero, por las personas que construyen el producto." },
+      { title: "Colaboración en equipo", body: "Trabaja en el mismo proyecto con tu equipo." },
+      { title: "Materiales y mobiliario personalizados", body: "Añade tus propios materiales y muebles, además de la biblioteca de ajustes preestablecidos." },
+      { title: "Lista de materiales (BOM)", body: "Una lista de materiales con cantidades, directamente del plano." },
     ],
   },
   month: {
-    h2a: "Un mes es suficiente",
-    h2b1: "para un ",
-    h2b2: "proyecto entero.",
-    quote: "“Pude crear el proyecto en 15 minutos con Anthemius, cuando normalmente lleva de 5 a 7 días.”",
-    cite: "Pratik Ghodke, usuario temprano",
+    h2a: "Un solo plano, del primer muro",
+    h2b1: "a las ",
+    h2b2: "cantidades finales.",
+    p: "Distribuye, edita, viste, recorre y cuantifica. Todo en un solo archivo, en tu navegador.",
     screenAlt: "El editor de Anthemius: un plano 2D de oficina a la izquierda y la misma planta en 3D a la derecha",
     screenCaption: "El plano y el modelo 3D son un solo archivo. Edita uno y el otro lo sigue.",
     steps: [
@@ -63,6 +63,7 @@ export const es: Dict = {
     region: "Región",
     month: "Primer mes de {plan}",
     billed: "Facturado en",
+    then: "Después, por usuario / mes",
     yours: "Tu región",
   },
   close: {
@@ -82,6 +83,13 @@ export const es: Dict = {
     terms: "Condiciones de uso",
     privacy: "Política de privacidad",
     copy: "© 2026 Anthemius.",
+  },
+  legal: {
+    terms: "Condiciones de uso",
+    privacy: "Política de privacidad",
+    close: "Cerrar",
+    loading: "Cargando…",
+    missing: "Este documento aún no está disponible.",
   },
   consent: {
     title: "Cookies",

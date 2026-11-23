@@ -1,13 +1,13 @@
 /**
  * English: the source dictionary. Every other language must match this shape
  * (the `Dict` type enforces it). `{x}` marks a value filled in at runtime.
- * Brand and product names (Anthemius, Studio, Pro…) are not translated.
+ * Brand and product names (Anthemius, Studio…) are not translated.
  */
 export const en = {
   meta: {
-    title: "Black Friday: one month of Anthemius Pro for $0.99",
+    title: "Black Friday: one month of Anthemius Studio for $0.99",
     description:
-      "Design, dress and walk interior spaces in the browser. Until 30 November, your first month of Anthemius Pro is $0.99 in the US, €0,99 in Europe and ₹99 in India.",
+      "Design, dress and walk interior spaces in the browser. Until 30 November, your first month of Anthemius Studio is $0.99 in the US, €0,99 in Europe and ₹99 in India.",
   },
   langName: "English",
   banner: {
@@ -38,17 +38,17 @@ export const en = {
     p: "The free plan lets you design and experiment without limits. {plan} is for the moment the work goes to a client.",
     items: [
       { title: "Clean exports", body: "CAD files and drawings without the watermark, ready to send to a client or a contractor." },
-      { title: "Unwatermarked 3D", body: "Present the model as your own work, on screen or in a shared link." },
-      { title: "Walk mode and material finishes", body: "Step inside the space with floors, walls and lighting applied from the preset library." },
       { title: "Priority support", body: "Questions answered first, by the people who build the product." },
+      { title: "Team collaboration", body: "Bring your team into the same project." },
+      { title: "Custom materials and furniture", body: "Add your own materials and furniture beyond the preset library." },
+      { title: "Bill of materials", body: "A material list with quantities, straight from the plan." },
     ],
   },
   month: {
-    h2a: "A month is enough",
-    h2b1: "for a ",
-    h2b2: "whole project.",
-    quote: "“I could create the project in 15 minutes with Anthemius, for which it generally takes 5 to 7 days.”",
-    cite: "Pratik Ghodke, early user",
+    h2a: "One plan, from first wall",
+    h2b1: "to ",
+    h2b2: "final quantities.",
+    p: "Lay it out, edit it, dress it, walk it and quantify it. All in one file, in your browser.",
     screenAlt: "The Anthemius editor: a 2D office plan on the left and the same floor in 3D on the right",
     screenCaption: "The plan and the 3D model are one file. Edit either and the other follows.",
     steps: [
@@ -66,6 +66,7 @@ export const en = {
     region: "Region",
     month: "First month of {plan}",
     billed: "Billed in",
+    then: "Then, per user / month",
     yours: "Your region",
   },
   close: {
@@ -85,6 +86,13 @@ export const en = {
     terms: "Terms of Use",
     privacy: "Privacy Policy",
     copy: "© 2026 Anthemius.",
+  },
+  legal: {
+    terms: "Terms of Use",
+    privacy: "Privacy Policy",
+    close: "Close",
+    loading: "Loading…",
+    missing: "This document is not available yet.",
   },
   consent: {
     title: "Cookies",
