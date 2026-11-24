@@ -1,0 +1,164 @@
+.studio {
+  --line: rgba(23, 25, 28, 0.13);
+}
+.panes {
+  display: grid;
+  grid-template-columns: repeat(2, minmax(0, 1fr));
+  border: 1px solid #ddcfbe;
+  border-radius: var(--radius-card);
+  overflow: hidden;
+  background: #fcf8f1;
+  box-shadow: var(--shadow-soft);
+}
+.pane {
+  display: flex;
+  flex-direction: column;
+  min-width: 0;
+}
+.pane + .pane {
+  border-left: 1px solid #ddcfbe;
+}
+.head {
+  display: flex;
+  align-items: center;
+  gap: 9px;
+  min-height: 50px;
+  padding: 0 18px;
+  background: #211d1a;
+  color: var(--paper);
+  font-size: 15px;
+  font-weight: 550;
+}
+.head svg {
+  flex: none;
+  color: var(--accent);
+}
+.size {
+  margin-left: auto;
+  font-size: 13px;
+  font-weight: 400;
+  font-variant-numeric: tabular-nums;
+  text-align: right;
+  color: var(--paper-dim);
+}
+.sheet {
+  flex: 1;
+  display: grid;
+  align-items: center;
+  padding: 10px 14px;
+  background:
+    linear-gradient(rgba(120, 90, 60, 0.055) 1px, transparent 1px) 0 0 / 22px 22px,
+    linear-gradient(90deg, rgba(120, 90, 60, 0.055) 1px, transparent 1px) 0 0 / 22px 22px,
+    #fff8f4;
+}
+.plan {
+  display: block;
+  width: 100%;
+  height: auto;
+}
+.label {
+  font-family: var(--sans);
+  font-size: 44px;
+  font-weight: 600;
+  text-anchor: middle;
+  fill: #3d4552;
+}
+.area {
+  font-size: 37px;
+  font-weight: 400;
+  fill: #646d7a;
+}
+.dim {
+  font-family: var(--sans);
+  font-size: 38px;
+  font-variant-numeric: tabular-nums;
+  text-anchor: middle;
+  dominant-baseline: central;
+  fill: #3d4552;
+  stroke: #fff8f4;
+  stroke-width: 22px;
+  paint-order: stroke;
+}
+.model {
+  position: relative;
+  flex: 1;
+  min-height: 440px;
+  overflow: hidden;
+  background: #f7f9fc; /* the editor's Day sky */
+}
+.shown,
+.waiting {
+  position: absolute;
+  inset: 0;
+}
+.waiting {
+  visibility: hidden;
+}
+.studio .still {
+  position: absolute;
+  right: 0;
+  top: 0;
+  width: 200%;
+  max-width: none;
+  height: 100%;
+  border: 0;
+  border-radius: 0;
+  box-shadow: none;
+  object-fit: cover;
+  object-position: 100% 50%;
+}
+@media (max-width: 1000px) {
+  .panes {
+    grid-template-columns: minmax(0, 1fr);
+  }
+  .pane + .pane {
+    border-left: 0;
+  }
+  .model {
+    min-height: 0;
+    aspect-ratio: 16 / 10;
+  }
+}
+@media (max-width: 640px) {
+  .head {
+    padding: 0 12px;
+  }
+  .sheet {
+    padding: 8px 4px;
+  }
+  .label {
+    font-size: 58px;
+  }
+  /* too narrow to name at this size */
+  .narrow {
+    display: none;
+  }
+  .area {
+    display: none;
+  }
+  .dim {
+    font-size: 54px;
+    stroke-width: 16px;
+  }
+  .model {
+    aspect-ratio: 6 / 5;
+  }
+}
+@media (prefers-reduced-motion: no-preference) {
+  .empty .item,
+  .empty .notes {
+    opacity: 0;
+  }
+  .filling .item {
+    animation: arrive 0.35s cubic-bezier(0.2, 0.7, 0.2, 1) var(--d) backwards;
+  }
+  .filling .notes {
+    animation: arrive 0.4s ease-out 0.7s backwards;
+  }
+  @keyframes arrive {
+    from {
+      opacity: 0;
+      transform: translateY(-14px);
+    }
+  }
+}
