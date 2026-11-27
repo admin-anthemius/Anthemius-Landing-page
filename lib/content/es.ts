@@ -2,9 +2,9 @@ import type { Dict } from "./en";
 
 export const es: Dict = {
   meta: {
-    title: "Black Friday: un mes de Anthemius Studio por €0,99",
+    title: "Black Friday: un mes de Anthemius Studio por €1,99",
     description:
-      "Diseña, viste y recorre interiores en el navegador. Hasta el 30 de noviembre, tu primer mes de Anthemius Studio cuesta $0.99 en EE. UU., €0,99 en Europa y ₹99 en la India.",
+      "Diseña, viste y recorre interiores en el navegador. Hasta el 30 de noviembre, tu primer mes de Anthemius Studio cuesta $1.99 en EE. UU., €1,99 en Europa y ₹99 en la India.",
   },
   langName: "Spanish",
   banner: {
@@ -16,8 +16,8 @@ export const es: Dict = {
   nav: { home: "Inicio de Anthemius", language: "Idioma", cta: "Elegir Studio", menu: "Página", features: "Funciones", workflow: "Proceso", pricing: "Precios" },
   ends: { short: "30 de noviembre", long: "30 de noviembre de 2026" },
   regions: {
-    us: { label: "Estados Unidos", spoken: "99 centavos" },
-    eu: { label: "Europa", spoken: "99 céntimos de euro" },
+    us: { label: "Estados Unidos", spoken: "1,99 dólares" },
+    eu: { label: "Europa", spoken: "1,99 euros" },
     in: { label: "India", spoken: "99 rupias" },
   },
   hero: {

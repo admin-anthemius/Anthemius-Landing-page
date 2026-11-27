@@ -2,9 +2,9 @@ import type { Dict } from "./en";
 
 export const nl: Dict = {
   meta: {
-    title: "Black Friday: een maand Anthemius Studio voor €0,99",
+    title: "Black Friday: een maand Anthemius Studio voor €1,99",
     description:
-      "Ontwerp, richt in en loop door interieurs in de browser. Tot 30 november kost je eerste maand Anthemius Studio $0.99 in de VS, €0,99 in Europa en ₹99 in India.",
+      "Ontwerp, richt in en loop door interieurs in de browser. Tot 30 november kost je eerste maand Anthemius Studio $1.99 in de VS, €1,99 in Europa en ₹99 in India.",
   },
   langName: "Dutch",
   banner: {
@@ -16,8 +16,8 @@ export const nl: Dict = {
   nav: { home: "Anthemius home", language: "Taal", cta: "Kies Studio", menu: "Pagina", features: "Functies", workflow: "Werkwijze", pricing: "Prijzen" },
   ends: { short: "30 november", long: "30 november 2026" },
   regions: {
-    us: { label: "Verenigde Staten", spoken: "99 dollarcent" },
-    eu: { label: "Europa", spoken: "99 eurocent" },
+    us: { label: "Verenigde Staten", spoken: "1,99 dollar" },
+    eu: { label: "Europa", spoken: "1,99 euro" },
     in: { label: "India", spoken: "99 roepie" },
   },
   hero: {

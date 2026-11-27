@@ -2,9 +2,9 @@ import type { Dict } from "./en";
 
 export const fi: Dict = {
   meta: {
-    title: "Black Friday: kuukausi Anthemius Studiota hintaan €0,99",
+    title: "Black Friday: kuukausi Anthemius Studiota hintaan €1,99",
     description:
-      "Suunnittele, sisusta ja kävele sisätiloissa selaimessa. 30. marraskuuta asti ensimmäinen kuukautesi Anthemius Studiota maksaa $0.99 Yhdysvalloissa, €0,99 Euroopassa ja ₹99 Intiassa.",
+      "Suunnittele, sisusta ja kävele sisätiloissa selaimessa. 30. marraskuuta asti ensimmäinen kuukautesi Anthemius Studiota maksaa $1.99 Yhdysvalloissa, €1,99 Euroopassa ja ₹99 Intiassa.",
   },
   langName: "Finnish",
   banner: {
@@ -16,8 +16,8 @@ export const fi: Dict = {
   nav: { home: "Anthemius etusivu", language: "Kieli", cta: "Valitse Studio", menu: "Sivu", features: "Ominaisuudet", workflow: "Työnkulku", pricing: "Hinnat" },
   ends: { short: "30. marraskuuta", long: "30. marraskuuta 2026" },
   regions: {
-    us: { label: "Yhdysvallat", spoken: "0,99 dollaria" },
-    eu: { label: "Eurooppa", spoken: "99 senttiä" },
+    us: { label: "Yhdysvallat", spoken: "1,99 dollaria" },
+    eu: { label: "Eurooppa", spoken: "1,99 euroa" },
     in: { label: "Intia", spoken: "99 rupiaa" },
   },
   hero: {
