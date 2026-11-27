@@ -20,8 +20,8 @@ export const OFFER = {
    * anthemius.io/pricing (features/pricing/plans.ts there), so the two must be kept in step.
    */
   prices: {
-    us: { amount: "$0.99", then: "$59", currency: "USD" },
-    eu: { amount: "€0,99", then: "€59", currency: "EUR" },
+    us: { amount: "$1.99", then: "$59", currency: "USD" },
+    eu: { amount: "€1,99", then: "€59", currency: "EUR" },
     in: { amount: "₹99", then: "₹4,499", currency: "INR" },
   } satisfies Record<Region, { amount: string; then: string; currency: string }>,
 };

@@ -5,9 +5,9 @@
  */
 export const en = {
   meta: {
-    title: "Black Friday: one month of Anthemius Studio for $0.99",
+    title: "Black Friday: one month of Anthemius Studio for $1.99",
     description:
-      "Design, dress and walk interior spaces in the browser. Until 30 November, your first month of Anthemius Studio is $0.99 in the US, €0,99 in Europe and ₹99 in India.",
+      "Design, dress and walk interior spaces in the browser. Until 30 November, your first month of Anthemius Studio is $1.99 in the US, €1,99 in Europe and ₹99 in India.",
   },
   langName: "English",
   banner: {
@@ -19,8 +19,8 @@ export const en = {
   nav: { home: "Anthemius home", language: "Language", cta: "Get Studio", menu: "Page", features: "Features", workflow: "Workflow", pricing: "Pricing" },
   ends: { short: "30 November", long: "30 November 2026" },
   regions: {
-    us: { label: "United States", spoken: "99 cents" },
-    eu: { label: "Europe", spoken: "99 euro cents" },
+    us: { label: "United States", spoken: "1.99 dollars" },
+    eu: { label: "Europe", spoken: "1.99 euros" },
     in: { label: "India", spoken: "99 rupees" },
   },
   hero: {
